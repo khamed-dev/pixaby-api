@@ -1,23 +1,22 @@
-import logo from './logo.svg';
+import { useInput } from './hooks/useInput';
+import { InputProvider } from './contexts/InputContext';
 import './App.css';
+import Header from './components/Header';
+import Body from './components/Body';
+
 
 function App() {
+
+  const [ inputOfSearch, onChangeSearch ] = useInput("");
+  const [inputOfImage, onChangeImage ] = useInput("");
+
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <InputProvider {...{ inputOfSearch, onChangeSearch, inputOfImage, onChangeImage }}>
+        <Header />
+        <Body />
+      </InputProvider>
     </div>
   );
 }
