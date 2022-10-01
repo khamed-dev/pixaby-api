@@ -6,8 +6,8 @@ export const REQUEST_STATUS ={
     FAILURE: "failure"
 }
 
-const _getFetch = (url,options) => {
-    const { method, body } =  options;
+const _getFetch = (url,...options) => {
+    const [ method, body ] =  options;
     let secondeParam = {
         method,
     }
@@ -19,7 +19,7 @@ const _getFetch = (url,options) => {
     return fetch(url,secondeParam);
 }
 
-export const useFetch = ({ resourceURL, method="GET", body, dataRetriever = res => res }) => {
+export const useFetch = ({ resourceURL, method="GET", body='hello', dataRetriever = res => res }) => {
     const [resources, setResources] = useState([]);
     const [requestStatus, setRequestStatus] = useState(REQUEST_STATUS.LOADING);
     
